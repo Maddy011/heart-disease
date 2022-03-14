@@ -1,7 +1,6 @@
 
 import streamlit as st 
-import pandas as pd
-# import pickle 
+import pandas as pd 
 
 from sklearn.linear_model import LogisticRegression
 from xgboost import XGBClassifier
@@ -67,7 +66,7 @@ def user_input_features():
     elif Sex == "Female":
         Sex = 0
     Chest_Pain  = st.sidebar.slider('Chest_Pain',1,4,value=2 )
-    # st.write('1 = typical angina | 2 = atypical angina | 3 = non — anginal pain | 4 = asymptotic')
+    
     Resting_Blood_Pressure = st.sidebar.slider('Resting_Blood_Pressure',100,180,value=120 )
     Colestrol = st.sidebar.slider('Colestrol',150,300,value=250 )
     Fasting_Blood_Sugar = st.sidebar.slider('Fasting_Blood_Sugar',0,1,value=1 )
@@ -93,20 +92,16 @@ def user_input_features():
             'Major_Vessels': Major_Vessels,
             'Thalessemia': Thalessemia}
     features = pd.DataFrame(data, index=[0])
-    # features.astype(str)
+    
     return features
 
 values = user_input_features()
-values.dtypes
+
 st.header('Specified Input parameters')
-st.dataframe(values)
+
 st.write(values)
 st.write('---')
 
-# loaded_model = pickle.load(open(model.pkl, 'rb'))
-# with open('model_pkl.pkl' , 'rb') as f:   #A:\Madhana\Program\Python\Heart_disease\
-    # lr = pickle.load(f)
-# prediction = logisticRegr.predict(values)
     
 prediction = xg_model.predict(values)
 
